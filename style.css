@@ -1,0 +1,1206 @@
+/* ==========================================================
+   ONYRA AI STUDIO
+   STYLE.CSS
+   PARTE 2A (25%)
+   ========================================================== */
+
+/* ========= RESET ========= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html{
+    width:100%;
+    height:100%;
+}
+
+body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Arial, Helvetica, sans-serif;
+    background:#0d1117;
+    color:#ffffff;
+    touch-action:none;
+}
+
+/* ========= VARIABLES ========= */
+
+:root{
+
+    --bg:#0d1117;
+
+    --panel:#161b22;
+
+    --panel2:#1f2630;
+
+    --border:#2c3440;
+
+    --primary:#5d8bff;
+
+    --secondary:#7c4dff;
+
+    --success:#00c853;
+
+    --danger:#ff5252;
+
+    --warning:#ffc107;
+
+    --text:#ffffff;
+
+    --text2:#bdbdbd;
+
+    --radius:15px;
+
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+
+}
+
+/* ========= LOADING ========= */
+
+#loadingScreen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:linear-gradient(180deg,#0d1117,#05070a);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+}
+
+#loadingScreen h1{
+
+    font-size:45px;
+
+    color:var(--primary);
+
+    letter-spacing:4px;
+
+    margin-bottom:20px;
+
+}
+
+#loadingScreen p{
+
+    color:var(--text2);
+
+    margin-bottom:25px;
+
+}
+
+.loadingBar{
+
+    width:320px;
+
+    height:12px;
+
+    background:#202630;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+}
+
+#loadingProgress{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(90deg,var(--primary),var(--secondary));
+
+    transition:.4s;
+
+}
+
+/* ========= APP ========= */
+
+#app{
+
+    width:100vw;
+
+    height:100vh;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* ========= TOPBAR ========= */
+
+#topbar{
+
+    height:65px;
+
+    background:var(--panel);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 15px;
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.logoCircle{
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    box-shadow:0 0 20px var(--primary);
+
+}
+
+.logo h2{
+
+    font-size:22px;
+
+}
+
+/* ========= MENU ========= */
+
+.menu{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.menu button{
+
+    background:none;
+
+    border:none;
+
+    color:white;
+
+    padding:10px 14px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.menu button:hover{
+
+    background:#27303d;
+
+}
+
+/* ========= BOTONES ========= */
+
+.topButtons{
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.topButtons button{
+
+    background:var(--primary);
+
+    border:none;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.topButtons button:hover{
+
+    transform:scale(1.05);
+
+    background:#7aa1ff;
+
+}
+
+/* ========= WORKSPACE ========= */
+
+#workspace{
+
+    flex:1;
+
+    display:flex;
+
+    overflow:hidden;
+
+}
+
+/* ========= SIDEBAR ========= */
+
+#sidebar{
+
+    width:280px;
+
+    background:var(--panel);
+
+    border-right:1px solid var(--border);
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:auto;
+
+}
+
+.explorerTitle{
+
+    padding:18px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+.newFile,
+.newFolder{
+
+    margin:10px;
+
+    border:none;
+
+    padding:12px;
+
+    background:#27303d;
+
+    color:white;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+}
+
+.newFile:hover,
+.newFolder:hover{
+
+    background:var(--primary);
+
+}
+
+#fileTree{
+
+    padding:15px;
+
+}
+
+#fileTree ul{
+
+    list-style:none;
+
+}
+
+#fileTree li{
+
+    padding:8px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    transition:.2s;
+
+}
+
+#fileTree li:hover{
+
+    background:#27303d;
+
+}/* ==========================================================
+   ONYRA AI STUDIO
+   STYLE.CSS
+   PARTE 2B (50%)
+   Editor, pestañas, chat IA y vista previa
+   ========================================================== */
+
+/* ========= ÁREA DEL EDITOR ========= */
+
+#editorArea{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    background:#0f141c;
+    overflow:hidden;
+}
+
+/* ========= PESTAÑAS ========= */
+
+#tabs{
+    height:50px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:8px;
+    background:#171d26;
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+}
+
+#tabs::-webkit-scrollbar{
+    height:5px;
+}
+
+#tabs::-webkit-scrollbar-thumb{
+    background:#3a4555;
+    border-radius:20px;
+}
+
+.tab{
+    min-width:140px;
+    padding:10px 16px;
+    background:#222b36;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.tab:hover{
+    background:#304055;
+}
+
+.tab.active{
+    background:var(--primary);
+    color:#fff;
+}
+
+/* ========= BARRA DE HERRAMIENTAS ========= */
+
+#toolbar{
+    height:55px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    background:#161b22;
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+}
+
+#toolbar button{
+    background:#27303d;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.2s;
+    white-space:nowrap;
+}
+
+#toolbar button:hover{
+    background:var(--primary);
+}
+
+/* ========= EDITOR ========= */
+
+#editorContainer{
+    flex:1;
+    display:flex;
+    overflow:hidden;
+    background:#0d1117;
+}
+
+#codeEditor{
+    flex:1;
+    width:100%;
+    height:100%;
+    resize:none;
+    border:none;
+    outline:none;
+    background:#0d1117;
+    color:#f8f8f2;
+    font-size:17px;
+    line-height:1.7;
+    padding:20px;
+    font-family:Consolas, monospace;
+    caret-color:#58a6ff;
+}
+
+/* ========= PANEL DERECHO ========= */
+
+#rightPanel{
+    width:360px;
+    display:flex;
+    flex-direction:column;
+    background:#161b22;
+    border-left:1px solid var(--border);
+}
+
+/* ========= CHAT ========= */
+
+#aiPanel{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+}
+
+.panelHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px;
+    background:#1d2430;
+    border-bottom:1px solid var(--border);
+}
+
+.panelHeader h3{
+    font-size:18px;
+}
+
+.panelHeader button{
+    background:var(--danger);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#chatMessages{
+    flex:1;
+    overflow:auto;
+    padding:15px;
+}
+
+#chatMessages::-webkit-scrollbar{
+    width:7px;
+}
+
+#chatMessages::-webkit-scrollbar-thumb{
+    background:#404b5f;
+    border-radius:20px;
+}
+
+.aiMessage{
+    background:#202938;
+    border-left:4px solid var(--primary);
+    padding:14px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+.botName{
+    font-weight:bold;
+    color:#7fb4ff;
+}
+
+#chatInputContainer{
+    display:flex;
+    gap:10px;
+    padding:12px;
+    border-top:1px solid var(--border);
+}
+
+#chatInput{
+    flex:1;
+    resize:none;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:#232d39;
+    color:white;
+    padding:12px;
+    min-height:55px;
+}
+
+#sendMessage{
+    width:95px;
+    border:none;
+    border-radius:12px;
+    background:var(--primary);
+    color:white;
+    cursor:pointer;
+}
+
+/* ========= CONSOLA ========= */
+
+#consolePanel{
+    height:230px;
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid var(--border);
+    background:#11161d;
+}
+
+#consoleOutput{
+    flex:1;
+    overflow:auto;
+    padding:12px;
+    font-family:monospace;
+    color:#7CFC00;
+}
+
+.consoleLine{
+    margin-bottom:8px;
+}
+
+/* ========= VISTA PREVIA ========= */
+
+#previewSection{
+    height:45%;
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid var(--border);
+    background:#161b22;
+}
+
+.previewHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 15px;
+    background:#1d2430;
+}
+
+.previewButtons{
+    display:flex;
+    gap:8px;
+}
+
+.previewButtons button{
+    border:none;
+    background:#27303d;
+    color:white;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.previewButtons button:hover{
+    background:var(--primary);
+}
+
+#previewFrame{
+    flex:1;
+    width:100%;
+    border:none;
+    background:white;
+}/* ==========================================================
+   ONYRA AI STUDIO
+   STYLE.CSS
+   PARTE 2C (75%)
+   Paneles, modales, terminal y animaciones
+   ========================================================== */
+
+/* ==========================
+   MODALES
+========================== */
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.65);
+    backdrop-filter:blur(8px);
+    z-index:1000;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modalContent{
+    width:90%;
+    max-width:600px;
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:var(--shadow);
+    animation:popup .25s ease;
+}
+
+.modalContent h2{
+    margin-bottom:18px;
+}
+
+.modalContent input,
+.modalContent select{
+    width:100%;
+    margin:10px 0;
+    padding:12px;
+    border:none;
+    outline:none;
+    border-radius:10px;
+    background:#222b36;
+    color:#fff;
+}
+
+.modalContent button{
+    margin-top:15px;
+    padding:12px 18px;
+    border:none;
+    border-radius:10px;
+    background:var(--primary);
+    color:#fff;
+    cursor:pointer;
+}
+
+/* ==========================
+   TERMINAL
+========================== */
+
+#terminalPanel{
+    display:flex;
+    flex-direction:column;
+    background:#090c10;
+    border-top:1px solid var(--border);
+}
+
+#terminal{
+    width:100%;
+    height:220px;
+    resize:none;
+    border:none;
+    outline:none;
+    background:#090c10;
+    color:#46ff67;
+    padding:15px;
+    font-family:Consolas,monospace;
+    font-size:15px;
+}
+
+/* ==========================
+   HISTORIAL
+========================== */
+
+#historyPanel{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:15px;
+    margin:15px;
+    padding:15px;
+}
+
+#historyPanel h2{
+    margin-bottom:12px;
+}
+
+#historyList{
+    list-style:none;
+}
+
+#historyList li{
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:8px;
+    background:#222b36;
+}
+
+/* ==========================
+   CONFIGURACIÓN
+========================== */
+
+#settingsPanel{
+    background:var(--panel);
+    margin:15px;
+    padding:18px;
+    border-radius:15px;
+    border:1px solid var(--border);
+}
+
+#settingsPanel h2{
+    margin-bottom:18px;
+}
+
+#settingsPanel label{
+    display:block;
+    margin:12px 0;
+}
+
+#settingsPanel select{
+    width:100%;
+    margin-top:12px;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:#222b36;
+    color:white;
+}
+
+/* ==========================
+   RECURSOS
+========================== */
+
+#assetsPanel{
+    margin:15px;
+    padding:15px;
+    border-radius:15px;
+    background:var(--panel);
+    border:1px solid var(--border);
+}
+
+.assetCategory{
+    margin-top:20px;
+}
+
+.assetCategory h3{
+    margin-bottom:10px;
+}
+
+#imageAssets,
+#audioAssets,
+#videoAssets{
+    min-height:90px;
+    border:2px dashed #384557;
+    border-radius:12px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:var(--text2);
+}
+
+/* ==========================
+   PLANTILLAS
+========================== */
+
+#templatesPanel{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:12px;
+    padding:15px;
+}
+
+#templatesPanel button{
+    padding:16px;
+    border:none;
+    border-radius:12px;
+    background:#27303d;
+    color:white;
+    cursor:pointer;
+    transition:.25s;
+}
+
+#templatesPanel button:hover{
+    background:var(--primary);
+    transform:translateY(-3px);
+}
+
+/* ==========================
+   NOTIFICACIONES
+========================== */
+
+#notifications{
+    position:fixed;
+    top:85px;
+    right:20px;
+    width:320px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    z-index:2000;
+}
+
+.notification{
+    padding:15px;
+    background:#202938;
+    border-left:5px solid var(--success);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    animation:slideRight .35s ease;
+}
+
+/* ==========================
+   BOTONES
+========================== */
+
+button{
+    transition:.25s;
+}
+
+button:hover{
+    filter:brightness(1.08);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+/* ==========================
+   ANIMACIONES
+========================== */
+
+@keyframes popup{
+    from{
+        opacity:0;
+        transform:scale(.85);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes slideRight{
+    from{
+        opacity:0;
+        transform:translateX(60px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+
+@keyframes glow{
+    0%{
+        box-shadow:0 0 8px var(--primary);
+    }
+    50%{
+        box-shadow:0 0 20px var(--primary);
+    }
+    100%{
+        box-shadow:0 0 8px var(--primary);
+    }
+}/* ==========================================================
+   ONYRA AI STUDIO
+   STYLE.CSS
+   PARTE 2D (100%)
+   Responsive, pantalla de bienvenida y acabados
+   ========================================================== */
+
+/* ==========================
+   PANTALLA DE BIENVENIDA
+========================== */
+
+#welcomeScreen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:30px;
+    background:linear-gradient(180deg,#0b1220,#0d1117);
+    z-index:900;
+    animation:fadeIn .5s ease;
+}
+
+#welcomeScreen h1{
+    font-size:48px;
+    margin-bottom:15px;
+    color:var(--primary);
+}
+
+#welcomeScreen p{
+    max-width:700px;
+    color:var(--text2);
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:25px;
+}
+
+#startNow{
+    padding:16px 30px;
+    border:none;
+    border-radius:14px;
+    background:var(--primary);
+    color:#fff;
+    font-size:18px;
+    cursor:pointer;
+    animation:glow 2s infinite;
+}
+
+/* ==========================
+   PIE DE PÁGINA
+========================== */
+
+#mainFooter{
+    height:42px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 15px;
+    background:#111827;
+    border-top:1px solid var(--border);
+    color:var(--text2);
+    font-size:13px;
+}
+
+/* ==========================
+   BARRA DE ESTADO
+========================== */
+
+#statusBar{
+    height:36px;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:0 12px;
+    background:#161b22;
+    border-top:1px solid var(--border);
+    color:#c7c7c7;
+    font-size:13px;
+    overflow-x:auto;
+}
+
+#statusBar::-webkit-scrollbar{
+    height:4px;
+}
+
+/* ==========================
+   SCROLLBAR
+========================== */
+
+::-webkit-scrollbar{
+    width:9px;
+    height:9px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#39475c;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#5b6f8f;
+}
+
+/* ==========================
+   EFECTOS GLASS
+========================== */
+
+.glass{
+    background:rgba(255,255,255,.05);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+/* ==========================
+   CLASES ÚTILES
+========================== */
+
+.hidden{
+    display:none !important;
+}
+
+.center{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.flex{
+    display:flex;
+}
+
+.column{
+    flex-direction:column;
+}
+
+.row{
+    flex-direction:row;
+}
+
+.spaceBetween{
+    justify-content:space-between;
+}
+
+.spaceAround{
+    justify-content:space-around;
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media (max-width:1200px){
+
+    #sidebar{
+        width:220px;
+    }
+
+    #rightPanel{
+        width:300px;
+    }
+
+    .menu{
+        gap:4px;
+    }
+
+    .menu button{
+        padding:8px;
+        font-size:14px;
+    }
+
+}
+
+/* ==========================
+   MÓVIL
+========================== */
+
+@media (max-width:900px){
+
+    #workspace{
+        flex-direction:column;
+    }
+
+    #sidebar{
+        width:100%;
+        height:220px;
+        border-right:none;
+        border-bottom:1px solid var(--border);
+    }
+
+    #rightPanel{
+        width:100%;
+        height:350px;
+        border-left:none;
+        border-top:1px solid var(--border);
+    }
+
+    #topbar{
+        flex-wrap:wrap;
+        height:auto;
+        padding:10px;
+    }
+
+    .logo h2{
+        font-size:18px;
+    }
+
+    .topButtons{
+        width:100%;
+        margin-top:10px;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    #previewSection{
+        height:350px;
+    }
+
+}
+
+/* ==========================
+   TABLETS PEQUEÑAS
+========================== */
+
+@media (max-width:700px){
+
+    #tabs{
+        gap:5px;
+    }
+
+    .tab{
+        min-width:120px;
+        font-size:13px;
+    }
+
+    #toolbar{
+        gap:5px;
+    }
+
+    #toolbar button{
+        font-size:12px;
+        padding:8px 10px;
+    }
+
+    #welcomeScreen h1{
+        font-size:34px;
+    }
+
+    #welcomeScreen p{
+        font-size:15px;
+    }
+
+}
+
+/* ==========================
+   ANIMACIONES EXTRA
+========================== */
+
+.fade{
+    animation:fadeIn .3s ease;
+}
+
+.glow{
+    animation:glow 2s infinite;
+}
+
+.scale:hover{
+    transform:scale(1.03);
+}
+
+.rotate:hover{
+    transform:rotate(2deg);
+}
+
+.shadow{
+    box-shadow:var(--shadow);
+}
+
+/* ==========================================================
+   FIN DE STYLE.CSS
+   ONYRA AI STUDIO v1.0
+   ========================================================== */
