@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Onyra AI Studio</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+
+</head>
+
+<body>
+
+<div id="loadingScreen">
+
+<h1>ONYRA AI</h1>
+
+<p>Iniciando...</p>
+
+<div class="loadingBar">
+
+<div id="loadingProgress"></div>
+
+</div>
+
+</div>
+
+<div id="app">
+
+<header id="topbar">
+
+<div class="logo">
+
+<div class="logoCircle"></div>
+
+<h2>Onyra AI Studio</h2>
+
+</div>
+
+<nav class="menu">
+
+<button id="archivoBtn">Archivo</button>
+
+<button id="editarBtn">Editar</button>
+
+<button id="verBtn">Ver</button>
+
+<button id="ejecutarBtn">Ejecutar</button>
+
+<button id="iaBtn">IA</button>
+
+<button id="configBtn">Configuración</button>
+
+<button id="ayudaBtn">Ayuda</button>
+
+</nav>
+
+<div class="topButtons">
+
+<button id="nuevoProyecto">
+
+Nuevo
+
+</button>
+
+<button id="abrirProyecto">
+
+Abrir
+
+</button>
+
+<button id="guardarProyecto">
+
+Guardar
+
+</button>
+
+<button id="exportarProyecto">
+
+Exportar
+
+</button>
+
+</div>
+
+</header>
+
+<div id="workspace">
+
+<aside id="sidebar">
+
+<div class="explorerTitle">
+
+Explorador
+
+</div>
+
+<button class="newFile">
+
++ Nuevo Archivo
+
+</button>
+
+<button class="newFolder">
+
++ Nueva Carpeta
+
+</button>
+
+<div id="fileTree">
+
+<ul>
+
+<li class="folder">
+
+📁 Proyecto
+
+<ul>
+
+<li>📄 index.html</li>
+
+<li>🎨 style.css</li>
+
+<li>⚙️ script.js</li>
+
+<li>🤖 ai.js</li>
+
+<li>📂 assets</li>
+
+</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+</aside>
+
+<main id="editorArea">
+
+<div id="tabs">
+
+<button class="tab active">
+
+index.html
+
+</button>
+
+<button class="tab">
+
+style.css
+
+</button>
+
+<button class="tab">
+
+script.js
+
+</button>
+
+<button class="tab">
+
+ai.js
+
+</button>
+
+</div>
+
+<div id="toolbar">
+
+<button>Copiar</button>
+
+<button>Pegar</button>
+
+<button>Deshacer</button>
+
+<button>Rehacer</button>
+
+<button>Buscar</button>
+
+<button>Reemplazar</button>
+
+<button>Formatear</button>
+
+<button>Ejecutar</button>
+
+</div>
+
+<div id="editorContainer">
+
+<textarea id="codeEditor" spellcheck="false">
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Nuevo Proyecto</title>
+
+</head>
+
+<body>
+
+<h1>Hola Onyra AI</h1>
+
+</body>
+
+</html>
+
+</textarea>
+
+</div>
+
+</main>        <!-- ========================= -->
+        <!-- PANEL DERECHO -->
+        <!-- ========================= -->
+
+        <aside id="rightPanel">
+
+            <!-- CHAT IA -->
+
+            <section id="aiPanel">
+
+                <div class="panelHeader">
+
+                    <h3>🤖 Onyra AI</h3>
+
+                    <button id="clearChat">Limpiar</button>
+
+                </div>
+
+                <div id="chatMessages">
+
+                    <div class="aiMessage">
+
+                        <span class="botName">Onyra AI</span>
+
+                        <p>Hola 👋. Estoy lista para ayudarte a crear juegos, páginas web, aplicaciones y código.</p>
+
+                    </div>
+
+                </div>
+
+                <div id="chatInputContainer">
+
+                    <textarea
+                        id="chatInput"
+                        placeholder="Escribe un mensaje..."
+                        rows="2"></textarea>
+
+                    <button id="sendMessage">
+
+                        Enviar
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- CONSOLA -->
+
+            <section id="consolePanel">
+
+                <div class="panelHeader">
+
+                    <h3>Consola</h3>
+
+                    <button id="clearConsole">
+
+                        Limpiar
+
+                    </button>
+
+                </div>
+
+                <div id="consoleOutput">
+
+                    <div class="consoleLine">
+
+                        Onyra AI Studio iniciado correctamente.
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </aside>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- VISTA PREVIA -->
+    <!-- ========================= -->
+
+    <section id="previewSection">
+
+        <div class="previewHeader">
+
+            <h3>Vista previa</h3>
+
+            <div class="previewButtons">
+
+                <button id="refreshPreview">
+
+                    Actualizar
+
+                </button>
+
+                <button id="fullscreenPreview">
+
+                    Pantalla completa
+
+                </button>
+
+                <button id="openWindow">
+
+                    Nueva ventana
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <iframe
+            id="previewFrame"
+            src="about:blank"
+            title="Vista previa">
+
+        </iframe>
+
+    </section>
+
+    <!-- ========================= -->
+    <!-- BARRA DE ESTADO -->
+    <!-- ========================= -->
+
+    <footer id="statusBar">
+
+        <div>
+
+            HTML
+
+        </div>
+
+        <div>
+
+            UTF-8
+
+        </div>
+
+        <div>
+
+            Línea: 1
+
+        </div>
+
+        <div>
+
+            Columna: 1
+
+        </div>
+
+        <div>
+
+            Tablet Ready
+
+        </div>
+
+        <div>
+
+            Onyra AI Studio v1.0
+
+        </div>
+
+    </footer>
+
+    <!-- ========================= -->
+    <!-- MENÚ CONTEXTUAL -->
+    <!-- ========================= -->
+
+    <div id="contextMenu">
+
+        <button>Nuevo Archivo</button>
+
+        <button>Nueva Carpeta</button>
+
+        <button>Renombrar</button>
+
+        <button>Duplicar</button>
+
+        <button>Eliminar</button>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- MODAL NUEVO PROYECTO -->
+    <!-- ========================= -->
+
+    <div id="newProjectModal" class="modal">
+
+        <div class="modalContent">
+
+            <h2>Nuevo Proyecto</h2>
+
+            <input
+                type="text"
+                placeholder="Nombre del proyecto">
+
+            <select>
+
+                <option>HTML</option>
+
+                <option>Juego 2D</option>
+
+                <option>Juego 3D</option>
+
+                <option>Aplicación Web</option>
+
+            </select>
+
+            <button>
+
+                Crear Proyecto
+
+            </button>
+
+        </div>
+
+    </div>    <!-- ========================= -->
+    <!-- PANEL IA AVANZADO -->
+    <!-- ========================= -->
+
+    <div id="aiToolsPanel" class="floatingPanel">
+
+        <div class="panelHeader">
+
+            <h2>Herramientas de Onyra AI</h2>
+
+            <button id="closeAITools">✕</button>
+
+        </div>
+
+        <div class="toolGrid">
+
+            <button class="toolButton">Crear HTML</button>
+            <button class="toolButton">Crear CSS</button>
+            <button class="toolButton">Crear JavaScript</button>
+            <button class="toolButton">Crear Juego</button>
+            <button class="toolButton">Corregir Código</button>
+            <button class="toolButton">Optimizar</button>
+            <button class="toolButton">Buscar Errores</button>
+            <button class="toolButton">Explicar Código</button>
+            <button class="toolButton">Crear App</button>
+            <button class="toolButton">Crear API</button>
+            <button class="toolButton">Crear IA</button>
+            <button class="toolButton">Exportar Proyecto</button>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- HISTORIAL -->
+    <!-- ========================= -->
+
+    <div id="historyPanel">
+
+        <h2>Historial</h2>
+
+        <ul id="historyList">
+
+            <li>Proyecto creado</li>
+            <li>index.html abierto</li>
+            <li>Vista previa iniciada</li>
+
+        </ul>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- EXPLORADOR DE RECURSOS -->
+    <!-- ========================= -->
+
+    <div id="assetsPanel">
+
+        <h2>Recursos</h2>
+
+        <div class="assetCategory">
+
+            <h3>Imágenes</h3>
+
+            <div id="imageAssets"></div>
+
+        </div>
+
+        <div class="assetCategory">
+
+            <h3>Audio</h3>
+
+            <div id="audioAssets"></div>
+
+        </div>
+
+        <div class="assetCategory">
+
+            <h3>Videos</h3>
+
+            <div id="videoAssets"></div>
+
+        </div>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- CONFIGURACIÓN -->
+    <!-- ========================= -->
+
+    <div id="settingsPanel">
+
+        <h2>Configuración</h2>
+
+        <label>
+
+            <input type="checkbox" checked>
+
+            Modo oscuro
+
+        </label>
+
+        <label>
+
+            <input type="checkbox" checked>
+
+            Autoguardado
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            Sonidos
+
+        </label>
+
+        <label>
+
+            <input type="checkbox">
+
+            Animaciones
+
+        </label>
+
+        <label>
+
+            Idioma
+
+        </label>
+
+        <select>
+
+            <option>Español</option>
+            <option>English</option>
+
+        </select>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- TERMINAL -->
+    <!-- ========================= -->
+
+    <div id="terminalPanel">
+
+        <div class="panelHeader">
+
+            <h2>Terminal</h2>
+
+        </div>
+
+        <textarea
+            id="terminal"
+            spellcheck="false"
+            placeholder=">"></textarea>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PANEL DE NOTIFICACIONES -->
+    <!-- ========================= -->
+
+    <div id="notifications">
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- PLANTILLAS -->
+    <!-- ========================= -->
+
+    <div id="templatesPanel">
+
+        <h2>Plantillas</h2>
+
+        <button>Juego 2D</button>
+        <button>Juego 3D</button>
+        <button>Landing Page</button>
+        <button>Portafolio</button>
+        <button>Tienda Online</button>
+        <button>Blog</button>
+        <button>Chat</button>
+        <button>Editor</button>
+
+    </div>
+
+    <!-- ========================= -->
+    <!-- VENTANA DE BIENVENIDA -->
+    <!-- ========================= -->
+
+    <div id="welcomeScreen">
+
+        <h1>Bienvenido a Onyra AI Studio</h1>
+
+        <p>
+            Diseña aplicaciones, páginas web y videojuegos desde un solo lugar.
+        </p>
+
+        <button id="startNow">
+
+            Comenzar
+
+        </button>
+
+    </div>    <!-- ===================================== -->
+    <!-- PANEL DE IA (ESTADO Y MEMORIA) -->
+    <!-- ===================================== -->
+
+    <div id="aiStatusPanel" class="modal hidden">
+
+        <div class="modalContent">
+
+            <h2>Estado de Onyra AI</h2>
+
+            <p>Estado: <span id="aiStatus">Lista</span></p>
+
+            <p>Modelo: Onyra Core v1</p>
+
+            <p>Memoria usada: <span id="memoryUsage">0 MB</span></p>
+
+            <p>CPU: <span id="cpuUsage">0%</span></p>
+
+            <button id="closeAIStatus">
+
+                Cerrar
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- PANEL DE ATAJOS -->
+    <!-- ===================================== -->
+
+    <div id="shortcutsPanel" class="modal hidden">
+
+        <div class="modalContent">
+
+            <h2>Atajos</h2>
+
+            <ul>
+
+                <li>Ctrl + S → Guardar</li>
+
+                <li>Ctrl + O → Abrir</li>
+
+                <li>Ctrl + N → Nuevo Proyecto</li>
+
+                <li>Ctrl + F → Buscar</li>
+
+                <li>F5 → Ejecutar Vista Previa</li>
+
+            </ul>
+
+            <button>Cerrar</button>
+
+        </div>
+
+    </div>
+
+    <!-- ===================================== -->
+    <!-- PIE DE PÁGINA -->
+    <!-- ===================================== -->
+
+    <footer id="mainFooter">
+
+        <div>
+
+            <span>Onyra AI Studio</span>
+
+            <span>Versión 1.0</span>
+
+        </div>
+
+        <div>
+
+            <span>Optimizado para Tablet</span>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<!-- ===================================== -->
+<!-- AUDIOS -->
+<!-- ===================================== -->
+
+<audio id="clickSound"></audio>
+
+<audio id="notificationSound"></audio>
+
+<audio id="errorSound"></audio>
+
+<!-- ===================================== -->
+<!-- PLANTILLAS OCULTAS -->
+<!-- ===================================== -->
+
+<template id="chatMessageTemplate">
+
+    <div class="chatMessage">
+
+        <div class="avatar"></div>
+
+        <div class="messageText"></div>
+
+    </div>
+
+</template>
+
+<template id="notificationTemplate">
+
+    <div class="notification">
+
+        <span class="notificationText"></span>
+
+    </div>
+
+</template>
+
+<!-- ===================================== -->
+<!-- SCRIPTS -->
+<!-- ===================================== -->
+
+<script src="settings.js"></script>
+
+<script src="filesystem.js"></script>
+
+<script src="preview.js"></script>
+
+<script src="editor.js"></script>
+
+<script src="ai.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
